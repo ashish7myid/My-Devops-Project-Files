@@ -1,0 +1,25 @@
+---
+- name: Create Image and Deploy on Docker
+  hosts: target1
+  tasks:
+  - name: Stop Devops Container
+    command: docker stop devops-container
+    ignore_errors: yes
+
+  - name: Remove Devops Container
+    command: docker rm devops-container
+    ignore_errors: yes
+
+  - name: Remove Devops Image
+    command: docker rmi devops-image   
+    ignore_errors: yes
+
+
+#  - name: Create Image
+#    command: docker build -t devops-image .
+#    args:
+#      chdir: /home/ansadmin
+
+  - name: Create Container
+    command: docker run -d --name devops-container -p 8086:8080 ashish7myid/devops-image
+ 

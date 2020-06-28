@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: devops-service
+  labels: 
+    type: devops-service
+spec:
+  type: LoadBalancer
+  ports:
+    - targetPort: 8080 
+      port: 8080
+      nodePort: 30082 
+  selector:
+    type: devops-pod

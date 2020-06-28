@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-deploy
+  labels:
+    type: devops-deploy
+spec:
+  template:
+    metadata:
+      name: devops-pod
+      labels:
+        type: devops-pod
+  
+    spec:
+      containers:
+      - name: devops-image
+        image: ashish7myid/devops-image
+  replicas: 1
+  selector:
+    matchLabels:
+      type: devops-pod

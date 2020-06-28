@@ -1,0 +1,19 @@
+---
+- name: Build Devops Images
+  hosts: localhost
+  tasks: 
+  - name: Build Image 
+    command: docker build -t devops-image:latest .
+    args:
+      chdir: /home/ansadmin
+
+  - name: Tag Image
+    command: docker tag devops-image ashish7myid/devops-image
+
+  - name: Push on Docker Hub
+    command: docker push ashish7myid/devops-image
+
+  - name: Remove Image
+    command: docker rmi devops-image:latest
+    ignore_errors: yes
+

@@ -1,0 +1,9 @@
+---
+- name: Run Deployment by Ansible
+  hosts: localhost
+  user: root  
+  tasks:
+  - name: Deployment run
+    command: kubectl apply -f /home/ansadmin/devops-deploy.yaml    
+  - name : Update deployment with new deployment (pods) if image updated in Docker Hub
+    command: kubectl rollout restart deployment.apps/devops-deploy  
